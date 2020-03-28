@@ -69,7 +69,7 @@ def draw_frame(canvas, start_row, start_column, text, negative=False):
 
 
 def get_frame_size(text):
-    """Calculate size of multiline text fragment. Returns pair (rows number, colums number)"""
+    """Calculate size of multiline text fragment. Returns pair (rows number, colums number)."""
     
     lines = text.splitlines()
     rows = len(lines)
@@ -77,6 +77,31 @@ def get_frame_size(text):
     return rows, columns
 
 def get_board_size(canvas):
-    """Return current terminal window size"""
+    """Return current terminal window size."""
+
     rows, columns = canvas.getmaxyx()
     return rows - 2, columns - 2
+
+def get_spaceship_move(canvas, frame, row, column):
+    """Calculate move of multiline text fragment. Returns pair (rows number, colums number)."""
+    
+    rows_direction, columns_direction, _ = read_controls(canvas)
+    spaceship_rows, spaceship_columns = get_frame_size(frame)
+    board_rows, board_columns = get_board_size(canvas)
+
+    max_ship_row_pos = board_rows - spaceship_rows
+    max_ship_column_pos = board_columns -spaceship_columns
+
+    row = row + rows_direction
+    if row == max_ship_row_pos:
+        row = row - 1
+    elif row == 1:
+        row = row + 1
+
+    column = column + columns_direction
+    if column == max_ship_column_pos:
+        column = column - 1
+    elif column == 1:
+        column = column + 1
+
+    return row, column

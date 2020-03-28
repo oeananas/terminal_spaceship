@@ -16,14 +16,15 @@ from animation import (
 TIC_TIMEOUT = 0.1
 
 
-def get_readed_files():
-    """Return dict of readed files strings"""
+def read_files():
+    """Return dict of readed files strings."""
+
     rocket_1 = ''
     rocket_2 = ''
 
-    with open('./img/rocket_1.txt', 'r') as rocket_1_file:
+    with open('./spaceship_frames/rocket_1.txt', 'r') as rocket_1_file:
         rocket_1 = rocket_1_file.read()
-    with open('./img/rocket_2.txt', 'r') as rocket_2_file:
+    with open('./spaceship_frames/rocket_2.txt', 'r') as rocket_2_file:
         rocket_2 = rocket_2_file.read()
 
     return {
@@ -33,7 +34,8 @@ def get_readed_files():
 
 
 def get_stars(canvas):
-    """Return list of stars courutines"""
+    """Return list of stars courutines."""
+
     board_rows, board_columns = get_board_size(canvas)
     cors = []
     for _ in range(100):
@@ -48,9 +50,9 @@ def get_stars(canvas):
 
 
 def get_spaceship(canvas, x, y):
-    """Return spaceship courutine"""
-    files = get_readed_files()
+    """Return spaceship courutine."""
 
+    files = read_files()
     rocket_1 = files.get('rocket_1')
     rocket_2 = files.get('rocket_2')
 
@@ -58,7 +60,8 @@ def get_spaceship(canvas, x, y):
 
 
 def draw(canvas):
-    """Use courutines for drawing in terminal"""
+    """Use courutines for drawing in terminal."""
+
     canvas.border()
     canvas.nodelay(True)
     curses.curs_set(False)
