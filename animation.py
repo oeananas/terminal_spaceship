@@ -67,4 +67,3 @@ async def spaceship(canvas, row, column, frame1, frame2):
         draw_frame(canvas, row, column, frame2)
         await asyncio.sleep(0)
         draw_frame(canvas, row, column, frame2, negative=True)
-        canvas.refresh()
